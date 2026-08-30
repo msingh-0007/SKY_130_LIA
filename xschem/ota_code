@@ -1,0 +1,54 @@
+v {xschem version=3.4.8RC file_version=1.3}
+G {}
+K {}
+V {}
+S {}
+F {}
+E {}
+N -290 -310 -290 -280 {lab=Vin-}
+N -290 -120 -290 -90 {lab=Vin+}
+N -290 -220 -290 -190 {lab=GND}
+N -290 -30 -290 0 {lab=GND}
+N -160 -90 -110 -90 {lab=GND}
+N -150 -190 -110 -190 {lab=GND}
+N -150 -270 -150 -250 {lab=Vdd}
+N -160 -30 -160 0 {lab=Vss}
+N -460 -120 -460 -90 {lab=VCM}
+N -460 -30 -460 0 {lab=GND}
+C {code_shown.sym} -270 -600 0 0 {name=s1 only_toplevel=false value="
+.dc V1 -0.9 0.9 0.001
+.save all @m.xm1.msky130_fd_pr__pfet_01v8_lvt[gds]
+.save @m.xm6.msky130_fd_pr__pfet_01v8_lvt[id]
+.control
+  run
+  *tran 1us 2ms
+  *let G_m = @m.xm1.msky130_fd_pr__pfet_01v8_lvt[gds]
+  *let i_6 = @m.xm6.msky130_fd_pr__pfet_01v8_lvt[id]
+  let i_der = 'deriv(i(vmeas)-i(vmeas1))'
+  meas dc gm_0 FIND i_der AT= 0
+  let gm_00 = 'gm_0'
+  plot i_der/gm_00 vs v(Vin+)*(gm_00/100u)
+  plot (i(vmeas)-i(vmeas1))/100u vs v(Vin+)*(gm_00/100u)
+  *plot v(Vbias)
+  *plot deriv(i(vmeas)-i(vmeas1))
+  
+  *op
+  *noise v(Vout) V1 dec 100 1 10MEG
+.endc
+.end"}
+C {vsource.sym} -290 -60 0 0 {name=V1 value="dc 0" savecurrent=false}
+C {vsource.sym} -290 -250 0 0 {name=V2 value="dc 0" savecurrent=false}
+C {lab_pin.sym} -290 -310 0 0 {name=p1 lab=Vin-}
+C {lab_pin.sym} -290 -120 0 0 {name=p3 lab=Vin+}
+C {gnd.sym} -290 -190 0 0 {name=l1 lab=GND}
+C {gnd.sym} -290 0 0 0 {name=l2 lab=GND}
+C {vsource.sym} -160 -60 0 0 {name=V4 value=0.9 savecurrent=false}
+C {gnd.sym} -110 -90 3 0 {name=l4 lab=GND}
+C {vsource.sym} -150 -220 0 0 {name=V3 value=0.9 savecurrent=false}
+C {gnd.sym} -110 -190 3 0 {name=l3 lab=GND}
+C {lab_pin.sym} -150 -270 0 0 {name=p4 lab=Vdd}
+C {lab_pin.sym} -160 0 0 0 {name=p12 lab=Vss}
+C {sky130_fd_pr/corner.sym} 20 -210 0 0 {name=CORNER only_toplevel=true corner=tt}
+C {vsource.sym} -460 -60 0 0 {name=V6 value="dc 0" savecurrent=false}
+C {lab_pin.sym} -460 -120 0 0 {name=p19 lab=VCM}
+C {gnd.sym} -460 0 0 0 {name=l6 lab=GND}

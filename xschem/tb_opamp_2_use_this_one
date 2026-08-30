@@ -1,0 +1,128 @@
+v {xschem version=3.4.8RC file_version=1.3}
+G {}
+K {}
+V {}
+S {}
+F {}
+E {}
+N -80 -150 -40 -150 {lab=GND}
+N -80 -230 -80 -210 {lab=Vdd}
+N -60 300 -60 330 {lab=Vss}
+N -60 240 -10 240 {lab=GND}
+N 30 -0 60 0 {lab=Vout}
+N -130 -20 -90 -20 {lab=V_plus}
+N -120 20 -90 20 {lab=Vout}
+N -30 -60 -30 -50 {lab=Vdd}
+N -30 50 -30 60 {lab=Vss}
+N -380 -150 -380 -130 {lab=V_plus}
+N -380 -70 -380 -40 {lab=GND}
+N 50 0 50 20 {lab=Vout}
+N 50 10 50 130 {lab=Vout}
+N -100 20 -100 130 {lab=Vout}
+N -100 130 50 130 {lab=Vout}
+C {op_amp_2.sym} 10 0 0 0 {name=x1}
+C {lab_pin.sym} -30 -60 0 0 {name=p1 lab=Vdd}
+C {lab_pin.sym} 60 0 0 1 {name=p2 lab=Vout}
+C {lab_pin.sym} -30 60 0 0 {name=p5 lab=Vss}
+C {code_shown.sym} 150 -480 0 0 {name=s1 only_toplevel=false value="
+.lib /foss/pdks/sky130A/libs.tech/combined/sky130.lib.spice tt_mm
+
+.param VDDGAUSS = agauss(0.9, 0.2, 3)
+.param VDDval= 'VDDGAUSS'
+
+.param TEMPGAUSS = agauss(40, 80, 3)
+.param TVAL= 'TEMPGAUSS'
+.options temp = \{TVAL\}
+* Step through voltage corners
+*ac dec 10 1 100MEG
+*measure ac Vgain MAX par('v(vout)/v(v+)')
+*save all
+* Step through temperature corners
+*.temp -40 25 125
+
+.control 
+
+
+*let t_index = 0
+
+let i_count = 50
+*let t_count = 5
+
+*let PVgain = vector(i_count)
+*let PVugb = vector(i_count)
+*let PVphase_mar = vector(i_count)
+let Offset = vector(i_count)
+
+*let T_vec = vector(i_count)
+*let V_vec = vector(i_count)
+
+
+*set plotstrdb = ' '
+*set plotstrph = ' '
+set plotstroff = ' '
+
+set xbrushwidth=2 
+set wr_vecnames 
+option seed = 9
+
+let index = 0
+ dowhile index <= 50
+  dc Vp -0.15 0.15 0.01
+  let g_out = 'v(Vout)'
+  *let g_plus = 'v(V_plus) - v(V_minus)'
+  *let gain = 'g_out/g_plus'
+  *let gain_db = 'db(gain)'
+  *let phase_db = '180/PI * phase(gain)'
+ 
+  *meas ac Vgain MAX gain_db
+  *meas ac UGB WHEN gain_db = 0 FALL = 1
+  *meas ac Vphase FIND phase_db WHEN gain_db = 0 FALL = 1
+   meas dc Voff WHEN g_out = 0 RISE = 1 
+
+  *let PVgain[index] = 'Vgain'
+  *let PVugb[index] = 'UGB'
+  *let PVphase_mar[index] = '180 + Vphase' 
+   let Offset[index] ='Voff'
+  
+  *set plotstrdb = ( $plotstrdb \{$curplot\}.gain_db )
+  *set plotstrph = ( $plotstrph \{$curplot\}.phase_db )
+  set plotstroff = ( $plotstroff \{$curplot\}.g_out )
+  reset
+  let index = index + 1
+ end
+  *set plotstrph = ( $plotstrph \{$curplot\}.phase_db )
+
+  
+   *echo -n This is $&Pgain
+   *echo -n This is $plotstrdb
+   set nolegend 
+   *plot $plotstrdb title 'AOL Gain tt_mm'
+   *plot $plotstrph title 'AOL Phase tt_mm'
+   plot $plotstroff title 'Output Offset Voltage MC'
+   *plot $&Pgain vs T_vec title 'AOL Gain fs Voltage/Temperature'
+
+   *set wr_vecnames
+   *print PVgain PVugb T_vec V_vec > AOLG_out_fs_1.txt
+   *print PVphase_mar T_vec V_vec > AOLPh_out_fs_1.txt
+
+   *print PVgain T_vec V_vec > output_tt.txt
+   print Offset > Offset_MC.txt
+
+   
+  *print Pgain T_vec V_vec > output_tt.raw
+   
+  *edit output_tt.txt  
+ 
+.endc
+  
+.end"}
+C {vsource.sym} -80 -180 0 0 {name=V3 value=\{VDDval\} savecurrent=false}
+C {gnd.sym} -40 -150 3 0 {name=l3 lab=GND}
+C {lab_pin.sym} -80 -230 0 0 {name=p8 lab=Vdd}
+C {vsource.sym} -60 270 0 0 {name=V4 value=\{VDDval\} savecurrent=false}
+C {lab_pin.sym} -60 330 0 0 {name=p9 lab=Vss}
+C {gnd.sym} -10 240 3 0 {name=l4 lab=GND}
+C {vsource.sym} -380 -100 0 0 {name=Vp value=0 savecurrent=false}
+C {lab_pin.sym} -380 -150 0 0 {name=p6 lab=V_plus}
+C {gnd.sym} -380 -40 0 0 {name=l2 lab=GND}
+C {lab_pin.sym} -130 -20 0 0 {name=p3 lab=V_plus}

@@ -1,0 +1,148 @@
+v {xschem version=3.4.8RC file_version=1.3}
+G {}
+K {}
+V {}
+S {}
+F {}
+E {}
+N -470 -170 -470 -140 {lab=Vin-}
+N -610 -170 -610 -140 {lab=Vin+}
+N -470 -80 -470 -50 {lab=GND}
+N -610 -80 -610 -50 {lab=GND}
+N -370 -110 -320 -110 {lab=GND}
+N -380 140 -340 140 {lab=GND}
+N -380 60 -380 80 {lab=Vdd}
+N -370 -50 -370 -20 {lab=Vss}
+N -600 30 -600 60 {lab=VCM}
+N -600 120 -600 150 {lab=GND}
+N -80 -110 -80 -80 {lab=Vss}
+N -80 80 -80 110 {lab=Vdd}
+N -100 -120 -100 -90 {lab=#net1}
+N -210 40 -150 40 {lab=Vin+}
+N -220 -40 -150 -40 {lab=Vin-}
+N -100 90 -100 110 {lab=#net2}
+N 450 20 480 20 {lab=VCM}
+N 330 -30 430 -30 {lab=Vo+}
+N 430 -30 430 40 {lab=Vo+}
+N 430 40 480 40 {lab=Vo+}
+N 360 50 400 50 {lab=Vo-}
+N 400 0 480 0 {lab=Vo-}
+N 370 10 370 120 {lab=#net3}
+N 370 120 520 120 {lab=#net3}
+N 520 100 520 120 {lab=#net3}
+N 540 -90 540 -60 {lab=Vss}
+N 540 100 540 130 {lab=Vdd}
+N 600 0 620 0 {lab=#net1}
+N 620 0 620 160 {lab=#net1}
+N -100 110 -100 150 {lab=#net2}
+N 400 50 400 70 {lab=Vo-}
+N 400 0 400 50 {lab=Vo-}
+N 430 -50 430 -30 {lab=Vo+}
+N -100 -160 -100 -120 {lab=#net1}
+N -100 -160 310 -160 {lab=#net1}
+N 120 -110 120 -80 {lab=Vss}
+N 120 80 120 110 {lab=Vdd}
+N 100 -120 100 -90 {lab=#net1}
+N 190 -40 220 -40 {lab=Vo+}
+N 190 40 250 40 {lab=Vo-}
+N 100 90 100 110 {lab=#net1}
+N 190 0 260 0 {lab=#net3}
+N 100 -160 100 -120 {lab=#net1}
+N 100 110 100 150 {lab=#net1}
+N 220 -40 280 -40 {lab=Vo+}
+N 280 -40 280 -30 {lab=Vo+}
+N 280 -30 330 -30 {lab=Vo+}
+N 250 40 320 40 {lab=Vo-}
+N 320 40 320 50 {lab=Vo-}
+N 320 50 360 50 {lab=Vo-}
+N 260 0 370 -0 {lab=#net3}
+N 370 0 370 10 {lab=#net3}
+N 310 150 620 150 {lab=#net1}
+N 240 40 240 140 {lab=Vo-}
+N 20 140 240 140 {lab=Vo-}
+N 20 -40 20 140 {lab=Vo-}
+N -10 -40 20 -40 {lab=Vo-}
+N 220 -130 220 -40 {lab=Vo+}
+N 0 -130 220 -130 {lab=Vo+}
+N -0 -130 0 40 {lab=Vo+}
+N -10 40 0 40 {lab=Vo+}
+N 20 40 50 40 {lab=Vo-}
+N -0 -20 40 -20 {lab=Vo+}
+N 40 -40 40 -20 {lab=Vo+}
+N 40 -40 50 -40 {lab=Vo+}
+N 310 -160 620 -160 {lab=#net1}
+N 620 -160 620 -0 {lab=#net1}
+N 0 290 30 290 {lab=VCM}
+N -20 240 -20 310 {lab=Vo-}
+N -20 310 30 310 {lab=Vo-}
+N -80 280 -80 390 {lab=#net4}
+N -80 390 70 390 {lab=#net4}
+N 70 370 70 390 {lab=#net4}
+N 90 180 90 210 {lab=Vss}
+N 90 370 90 400 {lab=Vdd}
+N -80 270 -80 280 {lab=#net4}
+N 100 150 310 150 {lab=#net1}
+N 20 140 20 230 {lab=Vo-}
+N -20 230 20 230 {lab=Vo-}
+N -20 230 -20 240 {lab=Vo-}
+N -0 40 0 270 {lab=Vo+}
+N -0 270 30 270 {lab=Vo+}
+N -10 0 10 0 {lab=#net4}
+N 10 0 10 210 {lab=#net4}
+N -80 210 10 210 {lab=#net4}
+N -80 210 -80 270 {lab=#net4}
+N 150 270 180 270 {lab=#net2}
+N 180 270 180 440 {lab=#net2}
+N -100 440 180 440 {lab=#net2}
+N -100 150 -100 440 {lab=#net2}
+C {code_shown.sym} -290 -530 0 0 {name=s1 only_toplevel=false value="
+*dc V1 -0.9 0.9 0.01
+.control
+  *run
+  *ac dec 100 1 100MEG
+  *plot db(v(Vout)/(v(Vin+))) xlog title 'Gain OL'
+  *plot (180/PI)*phase(v(Vout)/v(Vin+)) xlog title 'Phase OL'
+  tran 1us 1m
+  plot v(Vo+) v(Vo-) 
+  plot v(Vin+) 
+  
+  *plot v(Vbias)
+  *op
+  *noise v(Vout) V1 dec 100 1 10MEG
+  *plot deriv(i(vmeas)-i(vmeas1))
+.endc
+.end"}
+C {vsource.sym} -610 -110 0 0 {name=V1 value="SINE(0 200m 1kHz)" savecurrent=false}
+C {vsource.sym} -470 -110 0 0 {name=V2 value="dc 0" savecurrent=false}
+C {lab_pin.sym} -470 -170 0 0 {name=p6 lab=Vin-}
+C {lab_pin.sym} -610 -170 0 0 {name=p7 lab=Vin+}
+C {gnd.sym} -470 -50 0 0 {name=l1 lab=GND}
+C {gnd.sym} -610 -50 0 0 {name=l2 lab=GND}
+C {vsource.sym} -370 -80 0 0 {name=V4 value=0.9 savecurrent=false}
+C {gnd.sym} -320 -110 3 0 {name=l4 lab=GND}
+C {vsource.sym} -380 110 0 0 {name=V3 value=0.9 savecurrent=false}
+C {gnd.sym} -340 140 3 0 {name=l3 lab=GND}
+C {lab_pin.sym} -380 60 0 0 {name=p8 lab=Vdd}
+C {lab_pin.sym} -370 -20 0 0 {name=p12 lab=Vss}
+C {sky130_fd_pr/corner.sym} -650 -450 0 0 {name=CORNER only_toplevel=true corner=tt}
+C {vsource.sym} -600 90 0 0 {name=V5 value="dc -2.45m" savecurrent=false}
+C {lab_pin.sym} -600 30 0 0 {name=p5 lab=VCM}
+C {gnd.sym} -600 150 0 0 {name=l5 lab=GND}
+C {lab_pin.sym} -210 40 0 0 {name=p1 lab=Vin+}
+C {lab_pin.sym} 430 -50 0 1 {name=p10 lab=Vo+}
+C {lab_pin.sym} 400 70 2 0 {name=p11 lab=Vo-}
+C {lab_pin.sym} -220 -40 0 0 {name=p13 lab=Vin-}
+C {MY_OTA_Full.sym} -80 0 0 0 {name=x3}
+C {lab_pin.sym} -80 -110 0 1 {name=p14 lab=Vss}
+C {lab_pin.sym} -80 110 0 1 {name=p15 lab=Vdd}
+C {CMFB.sym} 600 20 0 0 {name=x4}
+C {lab_pin.sym} 450 20 2 1 {name=p16 lab=VCM}
+C {lab_pin.sym} 540 -90 0 1 {name=p22 lab=Vss}
+C {lab_pin.sym} 540 130 0 1 {name=p23 lab=Vdd}
+C {lab_pin.sym} 120 -110 0 1 {name=p2 lab=Vss}
+C {lab_pin.sym} 120 110 0 1 {name=p3 lab=Vdd}
+C {CMFB.sym} 150 290 0 0 {name=x2}
+C {lab_pin.sym} 0 290 2 1 {name=p17 lab=VCM}
+C {lab_pin.sym} 90 180 0 1 {name=p18 lab=Vss}
+C {lab_pin.sym} 90 400 0 1 {name=p19 lab=Vdd}
+C {MY_OTA_Half.sym} 120 0 0 0 {name=x5}
