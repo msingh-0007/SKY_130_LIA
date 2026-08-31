@@ -126,7 +126,7 @@ I/Q Mixing of a 10uV 1kHz signal and 1kHz reference (Mixed output is Red)
 
 <img width="686" height="378" alt="LOCK_IN_WAVEFORMS_10uv_WHITE_NOISY_AMPLIFIED_INPUT_UPDATE" src="https://github.com/user-attachments/assets/3f062a71-2219-4b66-8375-fb69e98350d9" />
 
-Signal buried in a 10mVrms White Gaussian Noise of ENBW 500,000k (1.414 * 10^-5 V/sqrt(Hz))  
+Signal buried in a 10mVrms White Gaussian Noise of ENBW 500,000k (1.414 * 10^-5 V/sqrt(Hz)); which is 14.14 times 1mV and 1414 times 10uV  
 
 <img width="811" height="450" alt="LOCK_IN_WAVEFORMS_1mv_NOISY_10mv_WHITE_TOTAL_OUTPUT_PT2_UPDATE" src="https://github.com/user-attachments/assets/c456177c-e421-405f-b7e7-b707341e0870" />
 
@@ -142,8 +142,24 @@ Noisy Lock-In-Amplifier outputs;
  - 10uV input signal with 60Hz cutoff and LPF cutoff of 10Hz
  - 10uV input signal with 60Hz cutoff and LPF cutoff of 1Hz
 
+<img width="816" height="446" alt="LOCK_IN_WAVEFORMS_1mv_NOISY_FFT_AMPLIFIED_INPUT_UPDATE" src="https://github.com/user-attachments/assets/18a0c60f-8d2d-4967-96e2-bfd22fd315e2" />
 
+<img width="823" height="453" alt="LOCK_IN_WAVEFORMS_1mv_NOISY_FFT_AMPLIFIED_INPUT_ZOOMED_UPDATE" src="https://github.com/user-attachments/assets/8aeca459-fc56-432a-b0a0-2daa9552c6ac" />
 
+<img width="831" height="456" alt="LOCK_IN_WAVEFORMS_1mv_NOISY_FFT_MIXED_OUTPUT_HARMONIC_UPDATE" src="https://github.com/user-attachments/assets/5df00793-f997-4a5c-8701-e7818beeefa1" />
+
+<img width="819" height="450" alt="LOCK_IN_WAVEFORMS_1mv_NOISY_FFT_MIXED_INPUT_COMPARE_OUTPUT_UPDATE" src="https://github.com/user-attachments/assets/c386f237-4ea5-4700-869d-07baad3b80ce" />
+
+<img width="822" height="452" alt="LOCK_IN_WAVEFORMS_1mv_NOISY_FFT_GMC_OUTPUT_UPDATE" src="https://github.com/user-attachments/assets/998caf27-c44c-4984-b735-ae258e08a449" />
+
+<img width="827" height="449" alt="LOCK_IN_WAVEFORMS_1mv_NOISY_FFT_TOTAL_OUTPUT_UPDATE" src="https://github.com/user-attachments/assets/7f81235b-151c-48d7-826b-72a2925ed1eb" />
+
+<img width="821" height="455" alt="LOCK_IN_WAVEFORMS_10uv_NOISY_10mv_WHITE_TOTAL_OUTPUT_UPDATE" src="https://github.com/user-attachments/assets/a6be185e-bdbb-4f5f-b6b6-0aa47ef58c5b" />
+
+FFT SPECTRAL WAVEFORMS:
+ - First 5 Waveforms depict the a 1mV 1kHz input buried in 10mV white noise input's path through the Lock-In-Amplifier to show the Lock-In-Amplifier's behavior in the frequency domain, to show what's happening to input and noise
+ - Last waveform is the LIA output of the 10uV 1kHz input
+ - Do Note; the FFT was done using a transient analysis 1us sampling of 50ms; giving us 50,000 bins and 20Hz bin size each. The windowing used was Hanning. Due to the relatively large bin size the depicted absolute values aren't completely accurate due to spectral smearing (when frequencies are located on non-integer bins); but for this analysis we are only interested in seeing the behavior of the Lock-In-Amplifier in the frequency/spectral domain 
 
 --UPDATE 
 
