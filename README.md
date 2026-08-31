@@ -113,6 +113,37 @@ cutoff to 60~70Hz
 Adjustability of the Gm-C LPF Cutoff frequency via the Vgc voltage
 
 
+<img width="726" height="402" alt="LOCK_IN_WAVEFORMS_1mv_BASLINE_DIFFOUT_LOWER" src="https://github.com/user-attachments/assets/ad427417-570d-4d06-8ef7-fe11a0b30910" />
+
+
+<img width="732" height="406" alt="LOCK_IN_WAVEFORMS_1mv_BASLINE_DIFFOUT_UPPER" src="https://github.com/user-attachments/assets/f3827a0d-3329-47fa-8a47-d9927f055a53" />
+
+I/Q Mixing of a 1mV 1kHz signal and 1kHz reference (setting to 90 degree phase vs 0 degree phase for 25ms each)
+
+<img width="820" height="450" alt="LOCK_IN_WAVEFORMS_10uv_MIXED_OUTPUT_UPDATE" src="https://github.com/user-attachments/assets/877a7236-6a60-4208-86d7-6d736a20a38a" />
+
+I/Q Mixing of a 10uV 1kHz signal and 1kHz reference (Mixed output is Red)
+
+<img width="686" height="378" alt="LOCK_IN_WAVEFORMS_10uv_WHITE_NOISY_AMPLIFIED_INPUT_UPDATE" src="https://github.com/user-attachments/assets/3f062a71-2219-4b66-8375-fb69e98350d9" />
+
+Signal buried in a 10mVrms White Gaussian Noise of ENBW 500,000k (1.414 * 10^-5 V/sqrt(Hz))  
+
+<img width="811" height="450" alt="LOCK_IN_WAVEFORMS_1mv_NOISY_10mv_WHITE_TOTAL_OUTPUT_PT2_UPDATE" src="https://github.com/user-attachments/assets/c456177c-e421-405f-b7e7-b707341e0870" />
+
+<img width="818" height="450" alt="LOCK_IN_WAVEFORMS_10uv_NOISY_10mv_10Hz_WHITE_TOTAL_OUTPUT_PT3_UPDATE" src="https://github.com/user-attachments/assets/79e31cfc-2225-4731-8fec-2f0d494af8e6" />
+
+<img width="805" height="443" alt="LOCK_IN_WAVEFORMS_10uv_NOISY_10mv_60Hz_10Hz_0 4_WHITE_TOTAL_OUTPUT_PT4_UPDATE" src="https://github.com/user-attachments/assets/853c2349-b20d-459b-bfa7-8615de1da544" />
+
+<img width="829" height="456" alt="LOCK_IN_AMPLIFIER_FINAL_FILTERED_OUTPUT_10U_1S" src="https://github.com/user-attachments/assets/7091b17a-dd1b-4fd3-b146-97507c9db298" />
+
+Noisy Lock-In-Amplifier outputs; 
+ - 1mv input signal vs white noise with 60Hz cutoff
+ - 10uV input signal with 10Hz cutoff and an additional LPF (External resistor Capacitor) of 10Hz cutoff (Red is LIA output, Green is LIA + External LPF)
+ - 10uV input signal with 60Hz cutoff and LPF cutoff of 10Hz
+ - 10uV input signal with 60Hz cutoff and LPF cutoff of 1Hz
+
+
+
 
 --UPDATE 
 
