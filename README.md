@@ -1,5 +1,6 @@
 This is my Lock-In-Amplifier Design, that I've been working on for my Master's
 Thesis Project. This was done using Sky130PDK and IIC-OSIC-TOOLS
+ <img width="730" height="466" alt="LOCK_IN_AMPLIFIER_SCHEMATIC" src="https://github.com/user-attachments/assets/4ab15c21-0255-407d-9618-3d794ce584ce" />
 
  The Architecture uses a Beta-Multiplier Reference to generate
 around a 1.2uA Current Source; which remain relatively constant for a VDD
@@ -132,6 +133,8 @@ bear in mind that these cutoffs are somewhat sensitive to temperature
 --0.5pF Caps were added to the delay buffer inverters of the J-Counter; to mitigate voltage spikes
 caused by switching, as well as to ensure no hold time violations occur. 
 The sine wave ref freq should be x4 the intended modulation freq
+
+-- Also lowered Schmitt Trigger's Threshold voltages from 2Vpp to roughly 0.4~0.5Vpp
 
 --MOSFET sizes were adjusted very slightly to account for appropriate number of fingers and multiples.
 This is needed as in order to match transistors properly, techniques such as dummy transistors and
