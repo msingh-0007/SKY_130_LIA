@@ -94,6 +94,25 @@ the Chip Packaging.
 
  In the very case that the tapeout date happens for after I graduate my Master's Program; and wouldn't be
 able to comeback to test the final chip; I will go through the trouble of writing a detailed wiki.
+LOCK_IN_AMPLIFIER WAVEFORMS:
+
+<img width="591" height="484" alt="LOCK_IN_WAVEFORMS_1MV_baseline" src="https://github.com/user-attachments/assets/366e1e37-74b6-4aa5-aa9a-7930c46995c8" />
+
+Here is a glimpse of the output waveforms of relevance; showing Input, Amplified Input via FDA, Mixer Output, I/Q CLK
+from Reference Freq, GM-C LPF output, and finally Total output
+
+<img width="821" height="450" alt="LOCK_IN_WAVEFORMS_1mv_TOTAL_OUTPUT_UPDATE" src="https://github.com/user-attachments/assets/abdbc532-2c48-4804-a3c7-c93a3931f4da" />
+
+<img width="825" height="450" alt="LOCK_IN_WAVEFORMS_10uv_TOTAL_OUTPUT_UPDATE" src="https://github.com/user-attachments/assets/1faa3a22-628c-43fb-a572-3febb0d7c916" />
+
+Ideal case (no input noise) outputs for 1mv and 10uV 1kHz inputs respectively, setting the Gm-C LPF
+cutoff to 60~70Hz
+
+<img width="921" height="379" alt="GM_C_LPF_UPDATE_CUTOFFS_VS_VGC" src="https://github.com/user-attachments/assets/71005839-9f7f-4939-840b-084567ffe5a8" />
+
+Adjustability of the Gm-C LPF Cutoff frequency via the Vgc voltage
+
+
 
 --UPDATE 
 
